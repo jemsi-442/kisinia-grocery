@@ -9,14 +9,11 @@ const ProductModal = () => {
     currentProduct,
     addToCart
   } = useCart();
+  
   const [addedToCart, setAddedToCart] = useState(false);
 
   useEffect(() => {
-    if (isProductModalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isProductModalOpen ? 'hidden' : '';
   }, [isProductModalOpen]);
 
   if (!isProductModalOpen || !currentProduct) return null;
@@ -29,35 +26,41 @@ const ProductModal = () => {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 backdrop-blur-sm"
       onClick={() => setIsProductModalOpen(false)}
     >
       <div 
-        className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col"
+        className="relative bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col animate-fadeIn"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button - Fixed in top-right corner */}
+
+        {/* Close */}
         <button 
           onClick={() => setIsProductModalOpen(false)}
-          className="absolute top-4 right-4 z-50 p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-          aria-label="Close product details"
+          className="absolute top-4 right-4 z-50 p-2 rounded-full bg-orange-100 dark:bg-gray-700 text-orange-700 dark:text-gray-300 hover:bg-orange-200 dark:hover:bg-gray-600 transition"
         >
           <FaTimes className="w-5 h-5" />
         </button>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 overflow-y-auto">
+          
+          {/* Image */}
           <div className="flex justify-center">
             <img 
               src={currentProduct.imageSrc} 
               alt={currentProduct.name}
-              className="w-full max-w-md max-h-[300px] md:max-h-[400px] h-auto rounded-lg object-cover"
+              className="w-full max-w-md max-h-[350px] md:max-h-[420px] rounded-xl object-cover shadow-md"
             />
           </div>
+
+          {/* Content */}
           <div className="relative">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+            <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-2 tracking-wide">
               {currentProduct.name}
             </h2>
-            <p className="text-green-600 dark:text-green-400 font-bold text-xl mb-4">
+
+            {/* Price */}
+            <p className="text-2xl font-bold text-orange-600 dark:text-orange-400 mb-4">
               ${currentProduct.price.toFixed(2)}
               {currentProduct.unit && (
                 <span className="text-gray-500 dark:text-gray-400 text-sm ml-1">
@@ -65,24 +68,31 @@ const ProductModal = () => {
                 </span>
               )}
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-              Category: <span className="capitalize">{currentProduct.category}</span>
+
+            {/* Category Badge */}
+            <p className="inline-block bg-orange-100 dark:bg-orange-700/30 text-orange-700 dark:text-orange-300 px-3 py-1 rounded-full text-xs font-medium mb-3">
+              {currentProduct.category}
             </p>
-            <p className="text-gray-700 dark:text-gray-300 mb-6">
+
+            {/* Description */}
+            <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               {currentProduct.description}
             </p>
+
+            {/* Add to Cart Button */}
             <button 
               onClick={handleAddToCart}
               disabled={addedToCart}
-              className={`w-full py-3 px-6 rounded-full font-medium transition duration-300 ${
-                addedToCart 
-                  ? 'bg-green-700 text-white'
-                  : 'bg-green-600 hover:bg-green-700 text-white'
+              className={`w-full py-3 px-6 rounded-full font-semibold text-white transition duration-300 shadow-md ${
+                addedToCart
+                  ? 'bg-orange-700'
+                  : 'bg-orange-600 hover:bg-orange-700'
               }`}
             >
               {addedToCart ? 'Added to Cart!' : 'Add to Cart'}
             </button>
           </div>
+
         </div>
       </div>
     </div>

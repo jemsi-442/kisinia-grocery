@@ -12,15 +12,24 @@ const Header = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Shop', path: '/shop' },
-    { name: 'About Us', path: '/about' }, // Added About Us link
+    { name: 'Menu', path: '/shop' },
+    { name: 'About Us', path: '/about' },
   ];
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur bg-white/90 dark:bg-gray-900/90 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+    <header className="
+      sticky top-0 z-50 backdrop-blur
+      bg-[#FFF4E6]/90 dark:bg-[#1E1A17]/90
+      border-b border-[#F1E0C6] dark:border-[#3A2F29]
+      shadow-sm
+    ">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Logo / Brand */}
-        <Link to="/" className="text-2xl font-extrabold text-green-600 dark:text-green-400 hover:text-green-700 transition">
+        
+        {/* Logo */}
+        <Link 
+          to="/" 
+          className="text-2xl font-extrabold text-[#D35400] dark:text-[#F39C12] hover:text-[#E67E22] transition"
+        >
           Kisinia
         </Link>
 
@@ -31,9 +40,12 @@ const Header = () => {
               key={link.name}
               to={link.path}
               className={({ isActive }) =>
-                `relative font-medium text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-all ${
-                  isActive ? 'after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-green-500 dark:after:bg-green-400' : ''
-                }`
+                `relative font-medium 
+                text-[#9A6C4A] dark:text-[#D5B895]
+                hover:text-[#D35400] dark:hover:text-[#F39C12] transition-all
+                ${isActive 
+                  ? 'after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-[#D35400] dark:after:bg-[#F39C12]' 
+                  : ''}`
               }
             >
               {link.name}
@@ -43,21 +55,30 @@ const Header = () => {
 
         {/* Desktop Icons */}
         <div className="hidden md:flex items-center space-x-4">
+
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            className="p-2 rounded-full text-[#9A6C4A] dark:text-[#D5B895] hover:bg-[#FFEBD6] dark:hover:bg-[#2A2421] transition"
             aria-label="Toggle theme"
           >
             {theme === 'light' ? <FaMoon /> : <FaSun />}
           </button>
 
+          {/* Cart */}
           <div
             className="relative cursor-pointer"
             onClick={() => setIsCartOpen(true)}
           >
-            <FaShoppingCart className="text-xl text-gray-700 dark:text-gray-300" />
+            <FaShoppingCart className="text-xl text-[#9A6C4A] dark:text-[#D5B895]" />
             {cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-yellow-400 text-gray-900 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
+              <span className="
+                absolute -top-2 -right-2 
+                bg-[#F39C12] text-white
+                text-xs font-bold rounded-full 
+                h-5 w-5 flex items-center justify-center 
+                animate-pulse
+              ">
                 {cartCount}
               </span>
             )}
@@ -66,29 +87,39 @@ const Header = () => {
 
         {/* Mobile Icons */}
         <div className="flex md:hidden items-center space-x-3">
+          
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            className="p-2 rounded-full text-[#9A6C4A] dark:text-[#D5B895] hover:bg-[#FFEBD6] dark:hover:bg-[#2A2421] transition"
             aria-label="Toggle theme"
           >
             {theme === 'light' ? <FaMoon /> : <FaSun />}
           </button>
 
+          {/* Cart */}
           <div
             className="relative cursor-pointer"
             onClick={() => setIsCartOpen(true)}
           >
-            <FaShoppingCart className="text-xl text-gray-700 dark:text-gray-300" />
+            <FaShoppingCart className="text-xl text-[#9A6C4A] dark:text-[#D5B895]" />
             {cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-yellow-400 text-gray-900 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
+              <span className="
+                absolute -top-2 -right-2 
+                bg-[#F39C12] text-white 
+                text-xs font-bold rounded-full 
+                h-5 w-5 flex items-center justify-center 
+                animate-pulse
+              ">
                 {cartCount}
               </span>
             )}
           </div>
 
+          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            className="p-2 rounded-full text-[#9A6C4A] dark:text-[#D5B895] hover:bg-[#FFEBD6] dark:hover:bg-[#2A2421] transition"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
@@ -96,8 +127,12 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Component */}
-      <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} links={navLinks} />
+      {/* Mobile Menu */}
+      <MobileMenu 
+        isOpen={isMobileMenuOpen} 
+        onClose={() => setIsMobileMenuOpen(false)} 
+        links={navLinks} 
+      />
     </header>
   );
 };

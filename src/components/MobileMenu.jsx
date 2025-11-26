@@ -13,7 +13,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
         className="absolute inset-0 bg-black bg-opacity-50"
         onClick={onClose}
       />
-      <div className="absolute top-16 right-0 w-64 bg-white dark:bg-gray-800 shadow-lg rounded-l-lg">
+      <div className="absolute top-16 right-0 w-64 bg-orange-50 dark:bg-gray-900 shadow-lg rounded-l-lg border border-orange-200 dark:border-orange-600">
         <nav className="p-4">
           <ul className="space-y-4">
             <li>
@@ -21,11 +21,11 @@ const MobileMenu = ({ isOpen, onClose }) => {
                 to="/"
                 onClick={onClose}
                 className={({ isActive }) =>
-                  `block px-4 py-2 rounded-md ${
+                  `block px-4 py-2 rounded-md font-medium ${
                     isActive
                       ? 'bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                  }`
+                      : 'text-gray-800 dark:text-gray-200 hover:bg-orange-200 dark:hover:bg-orange-700'
+                  } transition-colors`
                 }
               >
                 Home
@@ -36,11 +36,11 @@ const MobileMenu = ({ isOpen, onClose }) => {
                 to="/shop"
                 onClick={onClose}
                 className={({ isActive }) =>
-                  `block px-4 py-2 rounded-md ${
+                  `block px-4 py-2 rounded-md font-medium ${
                     isActive
                       ? 'bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                  }`
+                      : 'text-gray-800 dark:text-gray-200 hover:bg-orange-200 dark:hover:bg-orange-700'
+                  } transition-colors`
                 }
               >
                 Shop
@@ -48,13 +48,13 @@ const MobileMenu = ({ isOpen, onClose }) => {
             </li>
           </ul>
         </nav>
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
+        <div className="p-4 border-t border-orange-200 dark:border-orange-600 flex items-center justify-between">
           <button
             onClick={() => {
               setIsCartOpen(true);
               onClose();
             }}
-            className="flex items-center space-x-2 text-gray-700 dark:text-gray-300"
+            className="flex items-center space-x-2 text-gray-800 dark:text-gray-200 hover:text-green-600 dark:hover:text-green-400 transition"
           >
             <span>Cart ({cartCount})</span>
           </button>

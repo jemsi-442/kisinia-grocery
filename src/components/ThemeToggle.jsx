@@ -7,13 +7,13 @@ const ThemeToggle = ({ className = '' }) => {
   return (
     <button
       onClick={toggleTheme}
-      className={`p-2 rounded-full ${className}`}
+      className={`p-2 rounded-full bg-orange-500 dark:bg-green-600 hover:bg-orange-600 dark:hover:bg-green-500 transition ${className}`}
       aria-label="Toggle theme"
     >
       {theme === 'light' ? (
-        <FaMoon className="text-gray-700" />
+        <FaMoon className="text-white" />
       ) : (
-        <FaSun className="text-gray-300" />
+        <FaSun className="text-white" />
       )}
     </button>
   );

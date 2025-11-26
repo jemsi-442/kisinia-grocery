@@ -2,37 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Smooth color transitions */
 body {
-  @apply transition-colors duration-200;
+  @apply transition-colors duration-200 bg-[#FFF9F3] text-[#2E2E2E] dark:bg-[#1C1C1C] dark:text-gray-100;
 }
 
-/* Custom scrollbar */
+/* ----------- CUSTOM SCROLLBAR (Restaurant Theme) ----------- */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-gray-800;
+  @apply bg-[#F5EDE0] dark:bg-gray-800; /* Creamy food vibe */
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  @apply rounded-full;
+  background: linear-gradient(180deg, #D35400, #E67E22); /* Orange food gradient */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-400 dark:bg-gray-500;
+  background: linear-gradient(180deg, #E67E22, #F39C12); /* Brighter on hover */
 }
 
-/* Animation for cart icon */
-@keyframes tada {
-  0% { transform: scale(1); }
-  10%, 20% { transform: scale(0.9) rotate(-3deg); }
-  30%, 50%, 70%, 90% { transform: scale(1.1) rotate(3deg); }
-  40%, 60%, 80% { transform: scale(1.1) rotate(-3deg); }
-  100% { transform: scale(1) rotate(0); }
+/* ----------- RESTAURANT HIGHLIGHT COLORS ----------- */
+.food-primary {
+  @apply text-[#E67E22]; /* Appetizing orange */
 }
 
-.animate-tada {
-  animation: tada 0.8s ease;
+.food-bg {
+  @apply bg-[#FFF2E6]; /* Light warm background */
+}
+
+.food-button {
+  @apply bg-[#D35400] text-white px-4 py-2 rounded-lg shadow-md hover:bg-[#E67E22] transition;
+}
+
+.food-card {
+  @apply bg-white dark:bg-[#252525] rounded-2xl shadow-lg p-4 hover:shadow-xl transition;
+}
+
+/* ----------- ANIMATION FOR CART / ADD TO ORDER ----------- */
+@keyframes food-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.animate-food-bounce {
+  animation: food-bounce 0.4s ease-out;
+}
+
+/* Plate spin animation (for loading icons) */
+@keyframes plate-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-plate-spin {
+  animation: plate-spin 1s linear infinite;
+}
+
+/* ----------- SECTION TITLES ----------- */
+.section-title {
+  @apply text-3xl font-bold text-[#D35400] tracking-wide;
+}
+
+/* ----------- MENU BADGE ----------- */
+.menu-badge {
+  @apply bg-[#E67E22] text-white text-xs px-2 py-1 rounded-full;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
 }

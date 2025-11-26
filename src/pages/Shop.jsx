@@ -6,29 +6,23 @@ import { products } from '../data/products';
 const Shop = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchParams] = useSearchParams();
-  const urlCategory = searchParams.get('category');
-  const [categoryFilter, setCategoryFilter] = useState(urlCategory || 'all');
+  const urlCategory = searchParams.get('category') || 'all';
+  const [categoryFilter, setCategoryFilter] = useState(urlCategory);
   const [sortOption, setSortOption] = useState('default');
 
   useEffect(() => {
-    if (urlCategory) {
-      setCategoryFilter(urlCategory);
-    }
-  }, [urlCategory]);
-
-  useEffect(() => {
     let filtered = [...products];
-    
+
     if (categoryFilter !== 'all') {
       filtered = filtered.filter(product => product.category === categoryFilter);
     }
-    
+
     filtered.sort((a, b) => {
       const nameA = a.name.toLowerCase();
       const nameB = b.name.toLowerCase();
       const priceA = a.price;
       const priceB = b.price;
-      
+
       switch (sortOption) {
         case 'price-asc': return priceA - priceB;
         case 'price-desc': return priceB - priceA;
@@ -37,20 +31,20 @@ const Shop = () => {
         default: return 0;
       }
     });
-    
+
     setFilteredProducts(filtered);
-  }, [categoryFilter, sortOption]);
+  }, [categoryFilter, sortOption, products]);
 
   return (
-    <main className="py-8 dark:bg-gray-800">
+    <main className="py-8 bg-orange-50 dark:bg-gray-900 min-h-screen">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-green-600 dark:text-green-400 relative pb-2">
+        <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-orange-600 dark:text-orange-400 relative pb-2">
           Our Products
-          <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-green-400 rounded-full"></span>
+          <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-orange-400 rounded-full"></span>
         </h1>
 
-        {/* Enhanced Filter Controls */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 md:p-6 mb-8">
+        {/* Filter Controls */}
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-orange-200 dark:border-orange-600 p-4 md:p-6 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {/* Category Filter */}
             <div className="w-full">
@@ -63,7 +57,7 @@ const Shop = () => {
               <div className="relative">
                 <select
                   id="category-filter"
-                  className="block w-full px-4 py-3 text-base rounded-lg outline-none border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all appearance-none"
+                  className="block w-full px-4 py-3 text-base rounded-lg outline-none border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all appearance-none"
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
                 >
@@ -93,7 +87,7 @@ const Shop = () => {
               <div className="relative">
                 <select
                   id="sort-options"
-                  className="block w-full px-4 py-3 text-base outline-none rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all appearance-none"
+                  className="block w-full px-4 py-3 text-base outline-none rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all appearance-none"
                   value={sortOption}
                   onChange={(e) => setSortOption(e.target.value)}
                 >
