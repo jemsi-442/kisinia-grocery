@@ -9,13 +9,18 @@ const MobileMenu = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-40 md:hidden">
+      {/* Background Overlay */}
       <div 
         className="absolute inset-0 bg-black bg-opacity-50"
         onClick={onClose}
       />
+
+      {/* Slide-in Menu */}
       <div className="absolute top-16 right-0 w-64 bg-orange-50 dark:bg-gray-900 shadow-lg rounded-l-lg border border-orange-200 dark:border-orange-600">
         <nav className="p-4">
           <ul className="space-y-4">
+            
+            {/* Home */}
             <li>
               <NavLink
                 to="/"
@@ -31,6 +36,8 @@ const MobileMenu = ({ isOpen, onClose }) => {
                 Home
               </NavLink>
             </li>
+
+            {/* Shop */}
             <li>
               <NavLink
                 to="/shop"
@@ -46,8 +53,28 @@ const MobileMenu = ({ isOpen, onClose }) => {
                 Shop
               </NavLink>
             </li>
+
+            {/* 🔥 NEW: About Us */}
+            <li>
+              <NavLink
+                to="/about"
+                onClick={onClose}
+                className={({ isActive }) =>
+                  `block px-4 py-2 rounded-md font-medium ${
+                    isActive
+                      ? 'bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400'
+                      : 'text-gray-800 dark:text-gray-200 hover:bg-orange-200 dark:hover:bg-orange-700'
+                  } transition-colors`
+                }
+              >
+                About Us
+              </NavLink>
+            </li>
+
           </ul>
         </nav>
+
+        {/* Cart + Theme Toggle */}
         <div className="p-4 border-t border-orange-200 dark:border-orange-600 flex items-center justify-between">
           <button
             onClick={() => {
@@ -58,6 +85,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
           >
             <span>Cart ({cartCount})</span>
           </button>
+
           <ThemeToggle />
         </div>
       </div>
